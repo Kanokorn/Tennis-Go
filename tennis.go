@@ -39,7 +39,7 @@ func (g *Game) GetScore() string {
 	}
 
 	if g.PlayerOneScore == g.PlayerTwoScore {
-		return mapsScore(g.PlayerOneScore) + " all"
+		return mapsScore[g.PlayerOneScore] + " all"
 	}
 
 	if g.PlayerOneScore == 4 {
@@ -50,22 +50,14 @@ func (g *Game) GetScore() string {
 		return g.PlayerTwoName + " wins"
 	}
 
-	return mapsScore(g.PlayerOneScore) + "," + mapsScore(g.PlayerTwoScore)
+	return mapsScore[g.PlayerOneScore] + "," + mapsScore[g.PlayerTwoScore]
 }
 
-func mapsScore(scoreDiff int) string {
-	switch scoreDiff {
-	case 0:
-		return "Love"
-	case 1:
-		return "Fifteen"
-	case 2:
-		return "Thirty"
-	case 3:
-		return "Forty"
-	default:
-		return ""
-	}
+var mapsScore = [...]string{
+	"Love",
+	"Fifteen",
+	"Thirty",
+	"Forty",
 }
 
 func abs(num int) int {
